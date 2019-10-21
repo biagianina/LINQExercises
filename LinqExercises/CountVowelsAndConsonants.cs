@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 
 namespace LinqExercises
 {
@@ -16,21 +14,19 @@ namespace LinqExercises
 
         public (int, int) VowelsAndConsonantsCounter()
         {
-            var result = (0, 0);
-            result.Item1 = input.Aggregate(0, (count, c) =>
+            return input.Aggregate((0, 0), (count, c) =>
             {
-                if (vowels.Contains(c))
-                {
-                    count++;
-                }
-                else if (char.IsLetter(c))
-                {
-                    result.Item2++;
-                }
+                  if (vowels.Contains(char.ToLower(c)))
+                  {
+                      count.Item1++;
+                  }
+                  else if (char.IsLetter(c))
+                  {
+                      count.Item2++;
+                  }
 
-                return count;
+                  return count;
             });
-            return result;
         }
     }
 }
