@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace LinqExercises
 {
@@ -6,17 +7,11 @@ namespace LinqExercises
     {
         static void Main()
         {
-            var stock = new Stock(Callback);
-            stock.Add("fruits", "banana", 30);
-            stock.Add("fruits", "orange", 50);
-            stock.Add("fruits", "kiwi", 28);
-            stock.Remove("fruits", "banana", 28);
-            stock.Remove("fruits", "kiwi", 2);
-            stock.Add("fruits", "banana", 28);
-            stock.Remove("fruits", "banana", 22);
-            stock.Remove("fruits", "banana", 1);
-            stock.Add("cereals", "Cookie Crisps", 12);
-            stock.Remove("cereals", "Cookie Crisps", 10);
+            const string input = "aaabbbcyydpp";
+            foreach (var v in input.GroupBy(c => c.ToString(), StringComparer.OrdinalIgnoreCase))
+            {
+                Console.WriteLine(v.Key + " " + v.Count());
+            }
         }
 
         private static void Callback(string productName, int numberOfProducts)
