@@ -1,0 +1,13 @@
+﻿[*.cs]
+
+# S109: Magic numbers should not be used
+dotnet_diagnostic.S109.severity = silent
+
+# RCS1208: Reduce if nesting.
+dotnet_diagnostic.RCS1208.severity = silent
+
+# S1192: String literals should not be duplicated
+dotnet_diagnostic.S1192.severity = none
+
+# CA1062: Validate arguments of public methods
+dotnet_diagnostic.CA1062.severity = silent
