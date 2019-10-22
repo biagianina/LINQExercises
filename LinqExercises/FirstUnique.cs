@@ -13,10 +13,12 @@ namespace LinqExercises
             this.input = input;
         }
 
-        public string GetFirstUnique()
+        public char GetFirstUnique()
         {
-            return input.GroupBy(c => c.ToString(), StringComparer.OrdinalIgnoreCase).
-                First(c => c.Count() == 1).Key;
+            var duplicateCheck = new HashSet<char>();
+            var duplicates = input.Aggregate("", (acumulator, element) =>
+            !duplicateCheck.Add(element) ? acumulator + element : acumulator);
+            return input.Except(duplicates).First();
         }
     }
 }

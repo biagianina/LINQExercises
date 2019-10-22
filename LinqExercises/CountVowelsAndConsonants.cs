@@ -18,11 +18,11 @@ namespace LinqExercises
             {
                   if (vowels.Contains(char.ToLower(c)))
                   {
-                      count.Item1++;
+                     return (count.Item1 + 1, count.Item2);
                   }
                   else if (char.IsLetter(c))
                   {
-                      count.Item2++;
+                     return (count.Item1, count.Item2 + 1);
                   }
 
                   return count;
