@@ -19,7 +19,7 @@ namespace LinqExercises
         }
 
         [Fact]
-        public void GetUniqueCharIgnoreCase()
+        public void GetUniqueCharDoesNotIgnoreCase()
         {
             var input = new FirstUnique("aaAbbbCcyydpp");
             Assert.Equal('A', input.GetFirstUnique());

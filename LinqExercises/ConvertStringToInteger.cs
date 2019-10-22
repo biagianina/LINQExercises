@@ -15,9 +15,13 @@ namespace LinqExercises
         public double GetIntegerValue()
         {
             bool negative = input.StartsWith('-');
+
             CheckDigits(input, negative);
+
             var positiveNumber = negative ? input.Skip(1) : input;
-            var numericValue = positiveNumber.Aggregate(0d, (result, c) => result * 10 + char.GetNumericValue(c));
+            var numericValue = positiveNumber.Aggregate(0d, (result, c) =>
+            result * 10 + char.GetNumericValue(c));
+
             return negative ? -numericValue : numericValue;
         }
 
