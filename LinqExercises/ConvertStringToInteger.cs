@@ -16,10 +16,9 @@ namespace LinqExercises
         {
             bool negative = input.StartsWith('-');
             CheckDigits(input, negative);
-
-            return negative
-                ? input.Skip(1).Aggregate(0d, (result, c) => (result + (char.GetNumericValue(c) * Math.Pow(10, Convert.ToDouble(input.Length - input.IndexOf(c) - 1))) * -1))
-                : input.Aggregate(0d, (result, c) => result + (char.GetNumericValue(c) * Math.Pow(10, Convert.ToDouble(input.Length - input.IndexOf(c) - 1))));
+            var positiveNumber = negative ? input.Skip(1) : input;
+            var numericValue = positiveNumber.Aggregate(0d, (result, c) => result * 10 + char.GetNumericValue(c));
+            return negative ? -numericValue : numericValue;
         }
 
         private void CheckDigits(string input, bool negative)
