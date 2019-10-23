@@ -16,23 +16,26 @@ namespace LinqExercises
 
         public char GetFirstUnique()
         {
-            var charsIndexes = new Dictionary<char, List<int>>();
-            foreach (char c in input)
+            var charsIndexes = new Dictionary<char, int>();
+            int i = 0;
+            while (i < input.Length)
             {
-                if (charsIndexes.TryGetValue(c, out List<int> indexes))
+                if (charsIndexes.TryGetValue(input.ElementAt(i), out int index))
                 {
-                    indexes.Add(input.IndexOf(c));
+                    charsIndexes[input.ElementAt(i)] = -1;
+                    i++;
                 }
                 else
                 {
-                    charsIndexes.Add(c, new List<int> { input.IndexOf(c) });
+                    charsIndexes.Add(input.ElementAt(i), i);
+                    i++;
                 }
             }
 
             var indexOfFirstUniqueAppearance = charsIndexes.Select(c =>
             c.Value).Where(c =>
-            c.Count == 1).Aggregate(input.Length, (index, c) =>
-            index < c[0] ? index : c[0]);
+            c != -1).Aggregate(input.Length, (index, c) =>
+            index < c ? index : c);
 
             return input[indexOfFirstUniqueAppearance];
         }
