@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -16,26 +15,28 @@ namespace LinqExercises
 
         public char GetFirstUnique()
         {
-            var charsIndexes = new Dictionary<char, int>();
-            int i = 0;
-            while (i < input.Length)
+            var charsAndIndexes = input.Select((element, index) => new
             {
-                if (charsIndexes.TryGetValue(input.ElementAt(i), out int index))
+                Key = element,
+                Value = index
+            });
+
+            var result = charsAndIndexes.Aggregate(new Dictionary<char, int>(), (checkDuplicates, element) =>
+            {
+                if (checkDuplicates.TryGetValue(element.Key, out int index))
                 {
-                    charsIndexes[input.ElementAt(i)] = -1;
-                    i++;
+                    checkDuplicates[element.Key] = -1;
                 }
                 else
                 {
-                    charsIndexes.Add(input.ElementAt(i), i);
-                    i++;
+                    checkDuplicates.Add(element.Key, element.Value);
                 }
-            }
 
-            var indexOfFirstUniqueAppearance = charsIndexes.Select(c =>
-            c.Value).Where(c =>
-            c != -1).Aggregate(input.Length, (index, c) =>
-            index < c ? index : c);
+                return checkDuplicates;
+            });
+
+            var indexOfFirstUniqueAppearance = result.Select(c =>
+            c.Value).First(c => c != -1);
 
             return input[indexOfFirstUniqueAppearance];
         }
