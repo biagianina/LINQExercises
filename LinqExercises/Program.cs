@@ -7,7 +7,7 @@ namespace LinqExercises
     {
         static void Main()
         {
-            var input = new FirstUnique("aaabbbcyydpp");
+            var input = new FirstUnique("ddffdgggggtsdsaaasawewv");
             Console.WriteLine(input.GetFirstUnique());
         }
     }

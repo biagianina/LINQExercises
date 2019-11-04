@@ -16,22 +16,18 @@ namespace LinqExercises
         {
             bool negative = input.StartsWith('-');
 
-            CheckDigits(input, negative);
-
             var positiveNumber = negative ? input.Skip(1) : input;
             var numericValue = positiveNumber.Aggregate(0d, (result, c) =>
-            result * 10 + char.GetNumericValue(c));
+            {
+                if (!char.IsDigit(c))
+                {
+                    throw new ArgumentException("Input must be a integer format");
+                }
+
+                return result * 10 + char.GetNumericValue(c);
+            });
 
             return negative ? -numericValue : numericValue;
-        }
-
-        private void CheckDigits(string input, bool negative)
-        {
-            if (negative && !input.Skip(1).All(c => char.IsDigit(c)) ||
-                !negative && !input.All(c => char.IsDigit(c)))
-            {
-                throw new ArgumentException("Input must be a integer format");
-            }
         }
     }
 }
