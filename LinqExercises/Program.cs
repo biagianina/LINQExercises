@@ -7,10 +7,14 @@ namespace LinqExercises
     {
         static void Main()
         {
-            var input = new Palindromes("aba");
-            foreach (var s in input.GetPalindromes())
+            foreach (var s in new GivenSumSubarrays(new[] { 1, 2, 3, 4, 5, 6 }, 6).GetSubarrayWithSumK())
             {
-                Console.WriteLine(s);
+                foreach (var c in s)
+                {
+                    Console.Write(c);
+                }
+
+                Console.WriteLine();
             }
         }
     }
