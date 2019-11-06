@@ -16,11 +16,12 @@ namespace LinqExercises
             this.k = k;
         }
 
-        public IEnumerable<string> GetSubarrayWithSumK()
+        public IEnumerable<int[]> GetSubarrayWithSumK()
         {
             return GetSubarrays(numbers).Where(c =>
             c.Aggregate((result, element) => result + element) <= k)
-            .OrderBy(c => c.Count).Select(c => string.Join(' ', c));
+                .OrderBy(c => c.Count)
+                .Select(x => x.ToArray());
         }
 
         public IEnumerable<ArraySegment<int>> GetSubarrays(int[] numbers)
