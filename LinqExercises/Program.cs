@@ -7,14 +7,10 @@ namespace LinqExercises
     {
         static void Main()
         {
-            foreach (var s in new GivenSumSubarrays(new[] { 1, 2, 3, 4, 5, 6 }, 6).GetSubarrayWithSumK())
+            var result = new SignsOrder(2, 3);
+            foreach (var r in result.GenerateEquations())
             {
-                foreach (var c in s)
-                {
-                    Console.Write(c);
-                }
-
-                Console.WriteLine();
+                Console.WriteLine(r);
             }
         }
     }
