@@ -8,11 +8,25 @@ namespace LinqExercises
     {
         public static void Main()
         {
-            var numbers = new PythagoreanTriples(new[] { 5, 4, 3, 2, 1 });
-            foreach (var el in numbers.GetPythagoreanTriplets())
+            var laptop = new Product()
             {
-                    Console.WriteLine(el);
-            }
+                Name = "laptop",
+                Features = new List<Feature>
+                                {
+                                 new Feature { Id = 1 },
+                                 new Feature { Id = 2 },
+                                 new Feature { Id = 3 },
+                                 new Feature { Id = 4 }
+                                }
+            };
+
+            var features = new List<Feature>
+            {
+                 new Feature { Id = 2 },
+                 new Feature { Id = 3 }
+            };
+
+            Console.WriteLine(laptop.Features.All(x => features.Any(f => !x.Id.Equals(f.Id))));
         }
     }
 }
