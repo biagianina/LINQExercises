@@ -8,7 +8,7 @@ namespace LinqExercises
         static void Main()
         {
             var result = new SignsOrder(2, 3);
-            foreach (var r in result.GenerateEquations())
+            foreach (var r in result.GenerateEquationsEqualToK())
             {
                 Console.WriteLine(r);
             }
