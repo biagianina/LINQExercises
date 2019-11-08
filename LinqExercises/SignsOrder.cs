@@ -18,19 +18,27 @@ namespace LinqExercises
         public IEnumerable<string> GenerateEquationsEqualToK()
         {
             return GenerateEquationsAndResults()
-            .Where(equation => equation.Item2 == k)
-            .Select(equation => equation.Item1 + " = " + k);
+                .Where(equation => equation.Item2 == k)
+                .Select(equation => equation.Item1 + " = " + k);
         }
 
         private IEnumerable<(string, int)> GenerateEquationsAndResults()
         {
             return GenerateSigns()
-            .Select(s =>
-                s.Select((s, index) => (s, index))
-                .Aggregate(("", 0), (result, x) =>
-                x.s.Equals('+') ?
+                .Select(Calculate);
+        }
+
+        private (string, int) Calculate(string s)
+        {
+            return s.Select((s, index) => (s, index))
+                .Aggregate(("", 0), (result, x) => Calculate(result, x));
+        }
+
+        private (string, int) Calculate((string, int) result, (char s, int index) x)
+        {
+            return x.s.Equals('+') ?
                 (result.Item1 + "+" + (x.index + 1), result.Item2 + (x.index + 1)) :
-                (result.Item1 + "-" + (x.index + 1), result.Item2 - (x.index + 1))));
+                (result.Item1 + "-" + (x.index + 1), result.Item2 - (x.index + 1));
         }
 
         private IEnumerable<string> GenerateSigns()
@@ -38,7 +46,7 @@ namespace LinqExercises
             IEnumerable<string> seed = new[] { "" };
             return Enumerable.Range(1, n)
                 .Aggregate(seed, (res, x) =>
-                res.SelectMany(x => new[] { x + "+", x + "-" }));
+                    res.SelectMany(x => new[] { x + "+", x + "-" }));
         }
     }
 }

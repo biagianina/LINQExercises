@@ -1,14 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace LinqExercises
 {
     class Program
     {
-        static void Main()
+        public static void Main()
         {
-            var result = new SignsOrder(2, 3);
-            foreach (var r in result.GenerateEquationsEqualToK())
+            var result = new PythagoreanTriples(new[] { 1, 2, 3, 4, 5 });
+            foreach (var r in result.GetPythagoreanTriplets())
             {
                 Console.WriteLine(r);
             }
