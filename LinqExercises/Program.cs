@@ -8,10 +8,10 @@ namespace LinqExercises
     {
         public static void Main()
         {
-            var result = new PythagoreanTriples(new[] { 1, 2, 3, 4, 5 });
-            foreach (var r in result.GetPythagoreanTriplets())
+            var numbers = new PythagoreanTriples(new[] { 5, 4, 3, 2, 1 });
+            foreach (var el in numbers.GetPythagoreanTriplets())
             {
-                Console.WriteLine(r);
+                    Console.WriteLine(el);
             }
         }
     }
