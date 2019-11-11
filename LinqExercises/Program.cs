@@ -8,25 +8,30 @@ namespace LinqExercises
     {
         public static void Main()
         {
-            var laptop = new Product()
+            var list1 = new List<Prod>
             {
-                Name = "laptop",
-                Features = new List<Feature>
-                                {
-                                 new Feature { Id = 1 },
-                                 new Feature { Id = 2 },
-                                 new Feature { Id = 3 },
-                                 new Feature { Id = 4 }
-                                }
+                new Prod { Name = "laptop", Quantity = 10 },
+                new Prod { Name = "mobile phone", Quantity = 5 },
+                new Prod { Name = "TV", Quantity = 6 },
+                new Prod { Name = "console", Quantity = 7 },
+                new Prod { Name = "microwave", Quantity = 11 }
             };
 
-            var features = new List<Feature>
+            var list2 = new List<Prod>
             {
-                 new Feature { Id = 2 },
-                 new Feature { Id = 3 }
+                new Prod { Name = "laptop", Quantity = 10 },
+                new Prod { Name = "mixer", Quantity = 5 },
+                new Prod { Name = "shaker", Quantity = 6 },
+                new Prod { Name = "refrigerator", Quantity = 7 },
+                new Prod { Name = "owen", Quantity = 11 }
             };
 
-            Console.WriteLine(laptop.Features.All(x => features.Any(f => !x.Id.Equals(f.Id))));
+            var result = new ProductsJoiner(list1, list2);
+
+            foreach (var v in result.JoinProducts())
+            {
+                Console.WriteLine(v.Name + " " + v.Quantity);
+            }
         }
     }
 }
