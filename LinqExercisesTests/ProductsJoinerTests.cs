@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Xunit;
 
 namespace LinqExercises
@@ -49,8 +50,17 @@ namespace LinqExercises
                 refrigerator,
                 owen
             };
-
-            Equals(expected, result.JoinProducts());
+            var joined = result.JoinProducts();
+            Func<Prod, Prod, bool> equalProducts = (x, y) => x.Name.Equals(y.Name) && x.Quantity.Equals(y.Quantity);
+            Assert.True(equalProducts(expected[0], joined[0]));
+            Assert.True(equalProducts(expected[1], joined[1]));
+            Assert.True(equalProducts(expected[2], joined[2]));
+            Assert.True(equalProducts(expected[3], joined[3]));
+            Assert.True(equalProducts(expected[4], joined[4]));
+            Assert.True(equalProducts(expected[5], joined[5]));
+            Assert.True(equalProducts(expected[6], joined[6]));
+            Assert.True(equalProducts(expected[7], joined[7]));
+            Assert.True(equalProducts(expected[8], joined[8]));
         }
 
         [Fact]
@@ -99,8 +109,17 @@ namespace LinqExercises
                 refrigerator,
                 owen
             };
-
-            Equals(expected, result.JoinProducts());
+            var joined = result.JoinProducts();
+            Func<Prod, Prod, bool> equalProducts = (x, y) => x.Name.Equals(y.Name) && x.Quantity.Equals(y.Quantity);
+            Assert.True(equalProducts(expected[0], joined[0]));
+            Assert.True(equalProducts(expected[1], joined[1]));
+            Assert.True(equalProducts(expected[2], joined[2]));
+            Assert.True(equalProducts(expected[3], joined[3]));
+            Assert.True(equalProducts(expected[4], joined[4]));
+            Assert.True(equalProducts(expected[5], joined[5]));
+            Assert.True(equalProducts(expected[6], joined[6]));
+            Assert.True(equalProducts(expected[7], joined[7]));
+            Assert.True(equalProducts(expected[8], joined[8]));
         }
     }
 }

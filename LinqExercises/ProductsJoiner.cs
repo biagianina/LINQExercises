@@ -15,7 +15,7 @@ namespace LinqExercises
             this.list2 = list2;
         }
 
-        public IEnumerable<Prod> JoinProducts()
+        public List<Prod> JoinProducts()
         {
             return list1.Concat(list2).GroupBy(x => x.Name).Select(x =>
             new Prod { Name = x.Key, Quantity = x.Select(x => x.Quantity).Aggregate((sum, x) => sum + x) }).ToList();
