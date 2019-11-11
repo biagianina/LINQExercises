@@ -16,7 +16,9 @@ namespace LinqExercises
 
         public List<TestResults> GetHighestScores()
         {
-            return families.GroupBy(x => x.FamilyId).Select(x => x.Aggregate(new TestResults(), (max, x) => x.Score > max.Score ? x : max)).ToList();
+            return families.GroupBy(x => x.FamilyId)
+                .Select(x => x.Aggregate(new TestResults(), (max, x) => x.Score > max.Score ? x : max))
+                .ToList();
         }
     }
 }
