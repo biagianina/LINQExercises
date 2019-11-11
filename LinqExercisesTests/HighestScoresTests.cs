@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using Xunit;
 
 namespace LinqExercises
 {
-    class Program
+    public class HighestScoresTests
     {
-        public static void Main()
+        [Fact]
+        public void TestScores()
         {
             var andrei = new TestResults { Id = "Andrei", FamilyId = "Popescu", Score = 98 };
             var mihai = new TestResults { Id = "Mihai", FamilyId = "Popescu", Score = 100 };
@@ -27,11 +28,15 @@ namespace LinqExercises
                 ion,
                 marius
             };
-
-            foreach (var v in new HighestScores(families).GetHighestScores())
+            var result = new HighestScores(families).GetHighestScores();
+            var expected = new List<TestResults>
             {
-                Console.WriteLine(v.Id + " " + v.FamilyId + " " + v.Score);
-            }
+                mihai,
+                ana,
+                diana,
+                marius
+            };
+            Assert.Equal(expected, result);
         }
     }
 }
