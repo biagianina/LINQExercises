@@ -8,30 +8,20 @@ namespace LinqExercises
     {
         public static void Main()
         {
-            var andrei = new TestResults { Id = "Andrei", FamilyId = "Popescu", Score = 98 };
-            var mihai = new TestResults { Id = "Mihai", FamilyId = "Popescu", Score = 100 };
-            var ana = new TestResults { Id = "Ana", FamilyId = "Andreescu", Score = 56 };
-            var diana = new TestResults { Id = "Diana", FamilyId = "Pop", Score = 78 };
-            var gianina = new TestResults { Id = "Gianina", FamilyId = "Popescu", Score = 80 };
-            var george = new TestResults { Id = "George", FamilyId = "Andreescu", Score = 20 };
-            var ion = new TestResults { Id = "Ion", FamilyId = "Ionescu", Score = 85 };
-            var marius = new TestResults { Id = "Marius", FamilyId = "Ionescu", Score = 98 };
-            var families = new List<TestResults>
-            {
-                andrei,
-                mihai,
-                ana,
-                diana,
-                gianina,
-                george,
-                ion,
-                marius
-            };
+            var board = new Sudoku(new[]
+               {
+                new[] { 2, 8, 6, 1, 5, 4, 9, 7, 3 },
+                new[] { 1, 9, 5, 7, 6, 3, 8, 4, 2 },
+                new[] { 7, 4, 3, 2, 8, 9, 5, 1, 6 },
+                new[] { 3, 7, 9, 6, 2, 5, 4, 8, 1 },
+                new[] { 8, 5, 1, 3, 4, 7, 6, 2, 9 },
+                new[] { 4, 6, 2, 9, 1, 8, 7, 3, 5 },
+                new[] { 6, 3, 4, 5, 7, 2, 1, 9, 8 },
+                new[] { 9, 1, 7, 8, 3, 6, 2, 5, 4 },
+                new[] { 5, 2, 8, 4, 9, 1, 3, 6, 7 }
+               });
 
-            foreach (var v in new HighestScores(families).GetHighestScores())
-            {
-                Console.WriteLine(v.Id + " " + v.FamilyId + " " + v.Score);
-            }
+            Console.WriteLine(board.CheckSudoku());
         }
     }
 }
