@@ -16,25 +16,24 @@ namespace LinqExercises
 
         public bool CheckSudoku()
         {
-            return ValidateRows() && ValidateColumns() && ValidateSquares();
+            return Validate(board) && Validate(GetColumns()) && Validate(GetSquares());
         }
 
-        private bool ValidateRows()
+        private bool Validate(IEnumerable<IEnumerable<int>> item)
         {
-            return board.All(x => x.Where(c => c > 0 && c < 10).Distinct().Count() == 9);
+            return item.All(x => x.Where(c => c > 0 && c < 10).Distinct().Count() == 9);
         }
 
-        private bool ValidateColumns()
+        private IEnumerable<IEnumerable<int>> GetColumns()
         {
             return Enumerable.Range(0, board.Length).Select((x, i) =>
-                board.Select(x => x[i])).All(x => x.Where(c => c > 0 && c < 10).Distinct().Count() == 9);
+                board.Select(x => x[i]));
         }
 
-        private bool ValidateSquares()
+        private IEnumerable<IEnumerable<int>> GetSquares()
         {
-            return Enumerable.Range(0, 3).All(x =>
-                Enumerable.Range(0, 3).All(y => GetSquares(x, y)
-                .Where(c => c > 0 && c < 10).Distinct().Count() == 9));
+            return Enumerable.Range(0, 3).SelectMany(x =>
+                Enumerable.Range(0, 3).Select(y => GetSquares(x, y)));
         }
 
         private IEnumerable<int> GetSquares(int x, int y)
