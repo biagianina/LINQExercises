@@ -33,10 +33,10 @@ namespace LinqExercises
         private IEnumerable<IEnumerable<int>> GetSquares()
         {
             return Enumerable.Range(0, 3).SelectMany(x =>
-                Enumerable.Range(0, 3).Select(y => GetSquares(x, y)));
+                Enumerable.Range(0, 3).Select(y => GetSquare(x, y)));
         }
 
-        private IEnumerable<int> GetSquares(int x, int y)
+        private IEnumerable<int> GetSquare(int x, int y)
         {
             return Enumerable.Range(0, 3).SelectMany(a =>
                 Enumerable.Range(0, 3).Select(b => board[x * 3 + a][(y * 3) + b]));
