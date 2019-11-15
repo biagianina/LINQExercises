@@ -24,36 +24,35 @@ namespace LinqExercises
                     return result.Append(a);
                 }
 
-                if (x == "+")
-                {
-                    var operands = result.TakeLast(2).ToArray();
-                    var sum = operands[0] + operands[1];
-                    return result.Take(result.Count() - 2).Append(sum);
-                }
+                var operationResult = GetResult(result.TakeLast(2).ToArray(), x);
 
-                if (x == "-")
-                {
-                    var operands = result.TakeLast(2).ToArray();
-                    var dif = operands[0] - operands[1];
-                    return result.Take(result.Count() - 2).Append(dif);
-                }
-
-                if (x == "/")
-                {
-                    var operands = result.TakeLast(2).ToArray();
-                    var div = operands[0] / operands[1];
-                    return result.Take(result.Count() - 2).Append(div);
-                }
-
-                if (x == "*")
-                {
-                    var operands = result.TakeLast(2).ToArray();
-                    var prod = operands[0] * operands[1];
-                    return result.Take(result.Count() - 2).Append(prod);
-                }
-
-                return result;
+                return result.Take(result.Count() - 2).Append(operationResult);
             }).First();
+        }
+
+        private decimal GetResult(decimal[] operands, string x)
+        {
+            if (x == "+")
+            {
+                return operands[0] + operands[1];
+            }
+
+            if (x == "-")
+            {
+                return operands[0] - operands[1];
+            }
+
+            if (x == "/")
+            {
+                return operands[0] / operands[1];
+            }
+
+            if (x == "*")
+            {
+                return operands[0] * operands[1];
+            }
+
+            return 0;
         }
     }
 }
